@@ -49,8 +49,11 @@ export interface ICreateSubject {
   avatar_url?: string;
 }
 
+export type Subjects = () => Promise<Maybe<ISubject[]>>;
 export const subjects = (fetchJson: any) => async (): Promise<Maybe<ISubject[]>> => fetchJson('subjects.json');
-export const createSubject = (fetchJson: any) => async ({ name }: ICreateSubject): Promise<Maybe<ISubject>> => fetchJson('subjects.json', {
+
+export type CreateSubject = (props: ICreateSubject) => Promise<Maybe<ISubject>>;
+export const createSubject = (fetchJson: any): CreateSubject => async ({ name }) => fetchJson('subjects.json', {
   method: 'POST',
   body: JSON.stringify({ name })
 });

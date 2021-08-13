@@ -1,14 +1,21 @@
 import { Maybe } from 'fputils'
 import { getFetchJson } from './fetch'
-import { createSubject, subjects } from './modules/subject'
+import { CreateSubject, createSubject, Subjects, subjects } from './modules/subject'
 
-interface ISDKArgs {
+export interface IFakturoidSDKArgs {
   email: string;
   token: string;
   slug: string;
 }
 
-const sdk = ({ email, token , slug }: ISDKArgs) => {
+export interface IFakturoidSDK {
+  account: () => any,
+  invoices: () => any,
+  subjects: Subjects,
+  createSubject: CreateSubject,
+}
+
+const sdk = ({ email, token , slug }: IFakturoidSDKArgs): IFakturoidSDK => {
   const fetchJson = getFetchJson({ slug, email, token });
 
   const account = async (): Promise<Maybe<any>> => fetchJson('account.json');
