@@ -1,6 +1,6 @@
 import { Maybe } from 'fputils'
 import { getFetchJson } from './fetch'
-import { createSubject, subjects } from './lib/subject'
+import { createSubject, subjects } from './modules/subject'
 
 interface ISDKArgs {
   email: string;
