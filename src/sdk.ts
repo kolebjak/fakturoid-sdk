@@ -1,5 +1,6 @@
 import { Maybe } from 'fputils'
 import { getFetchJson } from './fetch'
+import { createSubject, subjects } from './lib/subject'
 
 interface ISDKArgs {
   email: string;
@@ -7,27 +8,18 @@ interface ISDKArgs {
   slug: string;
 }
 
-interface ICreateSubject {
-  name: string;
-}
-
 const sdk = ({ email, token , slug }: ISDKArgs) => {
   const fetchJson = getFetchJson({ slug, email, token });
 
   const account = async (): Promise<Maybe<any>> => fetchJson('account.json');
   const invoices = async (): Promise<Maybe<any>> => fetchJson('invoices.json');
-  const subjects = async (): Promise<Maybe<any>> => fetchJson('subjects.json');
 
-  const createSubject = async ({ name }: ICreateSubject): Promise<Maybe<any>> => fetchJson('subjects.json', {
-    method: 'POST',
-    body: JSON.stringify({ name })
-  });
 
   return {
     account,
     invoices,
-    subjects,
-    createSubject,
+    subjects: subjects(fetchJson),
+    createSubject: createSubject(fetchJson),
   }
 }
 
