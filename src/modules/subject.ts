@@ -1,4 +1,5 @@
-import { Maybe } from 'fputils'
+import { Maybe } from 'fputils';
+import { FetchJson } from '../fetch';
 
 export interface ISubject {
   id: number;
@@ -13,7 +14,7 @@ export interface ISubject {
   vat_no?: string;
   bank_account?: string;
   iban?: string;
-  variable_symbol?: string
+  variable_symbol?: string;
   full_name?: string;
   email?: string;
   email_copy?: string;
@@ -50,10 +51,16 @@ export interface ICreateSubject {
 }
 
 export type Subjects = () => Promise<Maybe<ISubject[]>>;
-export const subjects = (fetchJson: any) => async (): Promise<Maybe<ISubject[]>> => fetchJson('subjects.json');
+export const subjects =
+  (fetchJson: FetchJson<ISubject[]>): Subjects =>
+  async () =>
+    fetchJson('subjects.json');
 
 export type CreateSubject = (props: ICreateSubject) => Promise<Maybe<ISubject>>;
-export const createSubject = (fetchJson: any): CreateSubject => async ({ name }) => fetchJson('subjects.json', {
-  method: 'POST',
-  body: JSON.stringify({ name })
-});
+export const createSubject =
+  (fetchJson: FetchJson<ISubject>): CreateSubject =>
+  async (props) =>
+    fetchJson('subjects.json', {
+      method: 'POST',
+      body: JSON.stringify(props),
+    });
