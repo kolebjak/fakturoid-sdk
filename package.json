@@ -4,6 +4,19 @@
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "license": "MIT",
+  "keywords": [
+    "Fakturoid",
+    "API",
+    "SDK",
+    "TypeScript"
+  ],
+  "author": "Jakub Kolebaba",
+  "contributors": [
+    {
+      "name": "Jakub Kolebaba",
+      "email": "jakub@kolebaba.cz"
+    }
+  ],
   "dependencies": {
     "fputils": "^1.2.4",
     "node-fetch": "^2.6.1"
