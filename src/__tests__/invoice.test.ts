@@ -1,23 +1,23 @@
 import fakturoidSDK from '../sdk';
 import { isRight } from 'fputils';
+import { getEnvVar } from '../utils';
 
 describe('Invoice', () => {
   const sdk = fakturoidSDK({
-    email: 'email',
-    token: 'token',
-    slug: 'applecorp',
-    baseUrl: 'https://private-anon-99f626641b-fakturoid.apiary-mock.com/api/v2/accounts/',
+    email: 'drapeerden@icloud.com',
+    token: getEnvVar('TOKEN'),
+    slug: 'jakubdev',
+    baseUrl: 'https://app.fakturoid.cz/api/v2/accounts/',
   });
 
-  // TODO: fakturoid returns invalid json from mock server
-  xit('get list of invoices', async () => {
+  it('get list of invoices', async () => {
     const invoices = await sdk.invoices();
     expect(isRight(invoices)).toBe(true);
   });
 
-  xit('create invoice', async () => {
+  it('create invoice', async () => {
     const invoice = await sdk.createInvoice({
-      subject_id: 6,
+      subject_id: 12502822,
       lines: [
         {
           name: 'Random item',
@@ -29,5 +29,22 @@ describe('Invoice', () => {
     });
 
     expect(isRight(invoice)).toBe(true);
+  });
+
+  describe('invoice()', () => {
+    it('should exist', async () => {
+      const invoice = await sdk.invoice(19914229);
+
+      expect(isRight(invoice)).toBe(true);
+    });
+    it('should not exist', async () => {
+      const invoice = await sdk.invoice(19914229229229229);
+
+      if (isRight(invoice)) {
+        fail('Wrong status.');
+      }
+
+      expect(invoice.value.message).toBe('Response is not OK. Status: 404');
+    });
   });
 });

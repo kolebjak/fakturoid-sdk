@@ -1,7 +1,7 @@
 import { Maybe } from 'fputils';
 import { getFetchJson } from './fetch';
 import { CreateSubject, createSubject, Subjects, subjects } from './modules/subject';
-import { CreateInvoice, createInvoice, Invoices, invoices } from './modules/invoice';
+import { CreateInvoice, createInvoice, invoice, Invoice, Invoices, invoices } from './modules/invoice';
 
 export interface IFakturoidSDKArgs {
   email: string;
@@ -12,8 +12,11 @@ export interface IFakturoidSDKArgs {
 
 export interface IFakturoidSDK {
   account: () => Promise<Maybe<any>>;
-  invoices: Invoices;
+  // Invoice
   createInvoice: CreateInvoice;
+  invoices: Invoices;
+  invoice: Invoice;
+  // Subject
   subjects: Subjects;
   createSubject: CreateSubject;
 }
@@ -30,6 +33,7 @@ const sdk = ({ email, token, slug, baseUrl }: IFakturoidSDKArgs): IFakturoidSDK 
 
   return {
     account,
+    invoice: invoice(fetchJson),
     invoices: invoices(fetchJson),
     createInvoice: createInvoice(fetchJson),
     subjects: subjects(fetchJson),

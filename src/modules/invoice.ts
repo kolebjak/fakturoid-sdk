@@ -159,6 +159,12 @@ export const invoices =
   async (): Promise<Maybe<IInvoice[]>> =>
     fetchJson('invoices.json');
 
+export type Invoice = (id: IInvoice['id']) => Promise<Maybe<IInvoice>>;
+export const invoice =
+  (fetchJson: FetchJson<IInvoice>): Invoice =>
+  async (id) =>
+    fetchJson(`invoices/${id}.json`);
+
 export type CreateInvoice = (props: ICreateInvoice) => Promise<Maybe<IInvoice>>;
 export const createInvoice =
   (fetchJson: FetchJson<IInvoice>): CreateInvoice =>
