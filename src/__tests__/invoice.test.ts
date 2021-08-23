@@ -7,7 +7,6 @@ describe('Invoice', () => {
     email: 'drapeerden@icloud.com',
     token: getEnvVar('TOKEN'),
     slug: 'jakubdev',
-    baseUrl: 'https://app.fakturoid.cz/api/v2/accounts/',
   });
 
   it('get list of invoices', async () => {

@@ -7,7 +7,6 @@ export interface IFakturoidSDKArgs {
   email: string;
   token: string;
   slug: string;
-  baseUrl?: string;
 }
 
 export interface IFakturoidSDK {
@@ -21,12 +20,12 @@ export interface IFakturoidSDK {
   createSubject: CreateSubject;
 }
 
-const sdk = ({ email, token, slug, baseUrl }: IFakturoidSDKArgs): IFakturoidSDK => {
+const sdk = ({ email, token, slug }: IFakturoidSDKArgs): IFakturoidSDK => {
   const fetchJson = getFetchJson({
     slug,
     email,
     token,
-    baseUrl: baseUrl ?? 'https://app.fakturoid.cz/api/v2/accounts',
+    baseUrl: 'https://app.fakturoid.cz/api/v2/accounts',
   });
 
   const account = async (): Promise<Maybe<any>> => fetchJson('account.json');

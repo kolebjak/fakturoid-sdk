@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "env-cmd -f .env jest",
+    "test": "env-cmd -f .env jest --watch",
     "lint": "eslint '*/**/*.{js,ts,tsx}'"
   }
 }
