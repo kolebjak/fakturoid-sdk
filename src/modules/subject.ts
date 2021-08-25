@@ -56,6 +56,12 @@ export const subjects =
   async () =>
     fetchJson('subjects.json');
 
+export type Subject = (id: ISubject['id']) => Promise<Maybe<ISubject>>;
+export const subject =
+  (fetchJson: FetchJson<ISubject>): Subject =>
+  async (id) =>
+    fetchJson(`subjects/${id}.json`);
+
 export type CreateSubject = (props: ICreateSubject) => Promise<Maybe<ISubject>>;
 export const createSubject =
   (fetchJson: FetchJson<ISubject>): CreateSubject =>

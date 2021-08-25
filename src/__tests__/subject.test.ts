@@ -1,5 +1,5 @@
 import fakturoidSDK from '../sdk';
-import { isRight } from 'fputils';
+import { isLeft, isRight } from 'fputils';
 import { getEnvVar } from '../utils';
 
 describe('Subject', () => {
@@ -13,6 +13,16 @@ describe('Subject', () => {
     const subjects = await sdk.subjects();
     expect(isRight(subjects)).toBe(true);
     expect(Array.isArray(subjects.value)).toBe(true);
+  });
+
+  it('get subject by id', async () => {
+    const subject = await sdk.subject(12502822);
+
+    if (isLeft(subject)) {
+      fail('Incorrect state.');
+    }
+
+    expect(subject.value.id).toBe(12502822);
   });
 
   it('creates subject', async () => {
