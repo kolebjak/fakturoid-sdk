@@ -55,6 +55,7 @@ if(isLeft(account)) {
 |  `fakturoid.invoices()`  | List of invoices  |  [docs](https://fakturoid.docs.apiary.io/#reference/invoices/invoices-collection/seznam-faktur?console=1) |
 |  `fakturoid.invoice()`  | Invoice detail  |  [docs](https://fakturoid.docs.apiary.io/#reference/invoices/invoice/detail-faktury) |
 |  `fakturoid.createInvoice()`  | Create new invoice |  [docs](https://fakturoid.docs.apiary.io/#reference/invoices/invoices-collection/nova-faktura?console=1) |
+|  `fakturoid.subject()`  | Subject detail |  [docs](https://fakturoid.docs.apiary.io/#reference/subjects/subject/detail-kontaktu) |
 |  `fakturoid.subjects()`  | List of subjects |  [docs](https://fakturoid.docs.apiary.io/#reference/subjects/subjects-collection/seznam-vsech-kontaktu?console=1) |
 |  `fakturoid.createSubject()`  | Create new subject |  [docs](https://fakturoid.docs.apiary.io/#reference/subjects/subjects-collection/novy-kontakt?console=1) |
 
