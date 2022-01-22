@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "fputils": "^1.2.7",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.1.1"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
